@@ -1,6 +1,6 @@
 # myapp
 
-A new Flutter project.
+Um projeto de jogo da velha feito utilizando flutter
 
 ## Getting Started
 
