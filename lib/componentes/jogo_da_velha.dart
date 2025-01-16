@@ -30,15 +30,15 @@ class _JogoDaVelhaState extends State<JogoDaVelha> {
     });
   }
 
-  void _mostreDialogoVencedor(String vencedor) {
+  void _mostreDialogoVencedor(String winner) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(vencedor == 'Empate' ? 'Empate!' : 'Vencedor: $vencedor'),
+          title: Text(winner == 'Draw' ? 'Draw!' : 'Winner: $winner'),
           actions: [
             ElevatedButton(
-              child: const Text('Reiniciar Jogo'),
+              child: const Text('Restart game'),
               onPressed: () {
                 Navigator.of(context).pop();
                 _iniciarJogo();
@@ -50,7 +50,7 @@ class _JogoDaVelhaState extends State<JogoDaVelha> {
     );
   }
 
-  bool _verificaVencedor(String jogador) {
+  bool _verificaVencedor(String player) {
     const posicoesVencedoras = [
       [0, 1, 2],
       [3, 4, 5],
@@ -62,15 +62,15 @@ class _JogoDaVelhaState extends State<JogoDaVelha> {
       [2, 4, 6],
     ];
     for (var posicoes in posicoesVencedoras) {
-      if (_tabuleiro[posicoes[0]] == jogador &&
-          _tabuleiro[posicoes[1]] == jogador &&
-          _tabuleiro[posicoes[2]] == jogador) {
-        _mostreDialogoVencedor(jogador);
+      if (_tabuleiro[posicoes[0]] == player &&
+          _tabuleiro[posicoes[1]] == player &&
+          _tabuleiro[posicoes[2]] == player) {
+        _mostreDialogoVencedor(player);
         return true;
       }
     }
     if (!_tabuleiro.contains('')) {
-      _mostreDialogoVencedor('Empate');
+      _mostreDialogoVencedor('Draw');
       return true;
     }
     return false;
@@ -127,7 +127,7 @@ class _JogoDaVelhaState extends State<JogoDaVelha> {
                   },
                 ),
               ),
-              Text(_contraMaquina ? 'Computador' : 'Humano'),
+              Text(_contraMaquina ? 'VS Ai' : 'VS Human'),
               const SizedBox(width: 30.0),
               if (_pensando)
                 const SizedBox(
@@ -173,7 +173,7 @@ class _JogoDaVelhaState extends State<JogoDaVelha> {
         Expanded(
           child: ElevatedButton(
             onPressed: _iniciarJogo,
-            child: const Text('Reiniciar Jogo'),
+            child: const Text('Restart game'),
           ),
         ),
       ],

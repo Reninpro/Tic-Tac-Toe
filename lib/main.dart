@@ -11,7 +11,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const String titulo = 'Jogo da Velha';
+    const String titulo = 'Tic-Tac-Toe';
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: titulo,
